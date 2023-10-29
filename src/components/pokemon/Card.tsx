@@ -10,8 +10,15 @@ const Card = ({ pokemon }: Props) => {
   return (
     <CardWrapper>
       <CardLink to={`/${pokemon.id}`}>
-        <Text type="subtitle">{`#${pokemon.id}`}</Text>
+        <Id type="subtitle">{`${pokemon.id}`}</Id>
         <Text>{pokemon.name}</Text>
+        <img
+          src={pokemon.images[pokemon.images.length - 1]} // 정면 이미지
+          alt={pokemon.name}
+          width={100}
+          height={100}
+          loading="lazy"
+        />
       </CardLink>
     </CardWrapper>
   )
@@ -34,4 +41,10 @@ const CardLink = styled(Link)`
   cursor: pointer;
   text-decoration: none;
   color: inherit;
+`
+
+const Id = styled(Text)`
+  &:before {
+    content: '#';
+  }
 `
