@@ -2,8 +2,8 @@ export interface Pokemon {
   id: number
   height: number
   weight: number
-  type: string[]
-  image: string[]
+  types: string[]
+  images: string[]
 
   // species data
   speciesId: number

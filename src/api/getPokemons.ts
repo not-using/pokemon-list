@@ -11,7 +11,7 @@ export const getPokemons = async (offset: number = 0): Promise<Pokemon[]> => {
   return pokemons
 }
 
-const getPokemonById = async (id: number): Promise<Pokemon> => {
+export const getPokemonById = async (id: number): Promise<Pokemon> => {
   const pokemon: PokemonDto = await fetcher(`${pokeBaseURL}/pokemon/${id}`)
   const speciesId = parseIdFromUrl(pokemon.species.url)
   const species: PokemonSpeciesDto = await fetcher(
@@ -22,8 +22,8 @@ const getPokemonById = async (id: number): Promise<Pokemon> => {
     id,
     height: pokemon.height,
     weight: pokemon.weight,
-    type: pokemon.types.map((type) => type.type.name),
-    image: Object.values(pokemon.sprites).filter(
+    types: pokemon.types.map((type) => type.type.name),
+    images: Object.values(pokemon.sprites).filter(
       (url) => typeof url === 'string',
     ) as string[],
     speciesId: speciesId,
