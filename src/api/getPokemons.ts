@@ -1,5 +1,6 @@
 import { LIMIT, pokeBaseURL } from 'constants/pokeApi'
 import { Pokemon } from 'types/Pokemon'
+import fetcher from 'utils/fetcher'
 import { parseIdFromUrl } from 'utils/parseIdFromUrl'
 
 export const getPokemons = async (offset: number = 0): Promise<Pokemon[]> => {
@@ -11,13 +12,11 @@ export const getPokemons = async (offset: number = 0): Promise<Pokemon[]> => {
 }
 
 const getPokemonById = async (id: number): Promise<Pokemon> => {
-  const pokemon: PokemonDto = await fetch(`${pokeBaseURL}/pokemon/${id}`).then(
-    (res) => res.json(),
-  )
+  const pokemon: PokemonDto = await fetcher(`${pokeBaseURL}/pokemon/${id}`)
   const speciesId = parseIdFromUrl(pokemon.species.url)
-  const species: PokemonSpeciesDto = await fetch(
+  const species: PokemonSpeciesDto = await fetcher(
     `${pokeBaseURL}/pokemon-species/${speciesId}`,
-  ).then((res) => res.json())
+  )
 
   return {
     id,
