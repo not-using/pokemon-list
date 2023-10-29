@@ -1,6 +1,6 @@
 import { pokeBaseURL } from 'constants/pokeApi'
 import { getPokemonSpecies } from './getPokemonSpeciesInfo'
-import fetcher from 'utils/fetcher'
+import { fetcher } from 'utils/fetcher'
 import { parseIdFromUrl } from 'utils/parseIdFromUrl'
 
 export const getEvolutioChain = async (chainId: number) => {

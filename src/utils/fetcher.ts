@@ -10,5 +10,3 @@ export const fetcher = async (url: string) => {
   await cacheStorage.put(url, freshData.clone())
   return freshData.json()
 }
-
-export default fetcher
