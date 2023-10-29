@@ -3,16 +3,17 @@ import styled from 'styled-components'
 type Props = {
   type?: 'title' | 'subtitle' | 'normal'
   children: string
+  className?: string
 }
 
-const Text = ({ type = 'normal', children }: Props) => {
+const Text = ({ type = 'normal', children, className }: Props) => {
   switch (type) {
     case 'title':
-      return <Title>{children}</Title>
+      return <Title className={className}>{children}</Title>
     case 'subtitle':
-      return <SubTitle>{children}</SubTitle>
+      return <SubTitle className={className}>{children}</SubTitle>
     case 'normal':
-      return <NormalText>{children}</NormalText>
+      return <NormalText className={className}>{children}</NormalText>
   }
 }
 
