@@ -10,15 +10,15 @@ const SearchBar = () => {
     e.preventDefault()
     navigate(`/${searchedValue}`)
   }
-  
+
   return (
     <SearchBarWrapper onSubmit={goToPokemonDetail}>
-      <input
+      <Input
         type="number"
         onChange={(e) => setSearchedValue(e.currentTarget.value)}
         placeholder="포켓몬 번호를 입력해주세요"
       />
-      <button type="submit">검색</button>
+      <Button type="submit">검색</Button>
     </SearchBarWrapper>
   )
 }
@@ -26,8 +26,16 @@ const SearchBar = () => {
 export default SearchBar
 
 const SearchBarWrapper = styled.form`
-  width: 20rem;
+  width: 16rem;
   display: flex;
   justify-content: center;
   align-items: center;
+`
+const Input = styled.input`
+  flex-grow: 1;
+  padding: 0.1rem 0.4rem;
+`
+const Button = styled.button`
+  padding: 0.1rem 0.4rem;
+  margin-left: 0.5rem;
 `
