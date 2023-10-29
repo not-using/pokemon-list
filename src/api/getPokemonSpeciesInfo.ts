@@ -11,8 +11,8 @@ export const getPokemonSpecies = async (
   )
   return {
     speciesId: id,
-    name: species.names.find((name) => name.language.name === 'ko')!.name,
-    genus: species.genera.find((genus) => genus.language.name === 'ko')!.genus,
+    name: species.names.find((i) => i.language.name === 'ko')?.name ?? '',
+    genus: species.genera.find((i) => i.language.name === 'ko')?.genus ?? '',
     evolutionChainId: parseIdFromUrl(species.evolution_chain.url),
   }
 }
