@@ -1,3 +1,4 @@
+import { lazy } from 'react'
 import {
   createBrowserRouter,
   RouterProvider,
@@ -5,12 +6,12 @@ import {
   Route,
 } from 'react-router-dom'
 import { getPokemonById } from 'api/getPokemonById'
-import Layout from 'pages/PageLayout'
-import ListPage from 'pages/ListPage'
-import DetailPage from 'pages/DetailPage'
-import NotFoundPage from 'pages/NotFoundPage'
-import ErrorPage from 'pages/ErrorPage'
 import './global.css'
+const Layout = lazy(() => import('pages/PageLayout'))
+const DetailPage = lazy(() => import('pages/DetailPage'))
+const NotFoundPage = lazy(() => import('pages/NotFoundPage'))
+const ErrorPage = lazy(() => import('pages/ErrorPage'))
+const ListPage = lazy(() => import('pages/ListPage'))
 
 function App() {
   const routes = createRoutesFromElements(
