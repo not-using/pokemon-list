@@ -1,10 +1,12 @@
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
+import SearchBar from './SearchBar'
 
 const Header = () => {
   return (
     <HeaderWrapper>
       <HomeLink to="/">Home</HomeLink>
+      <SearchBar />
     </HeaderWrapper>
   )
 }
