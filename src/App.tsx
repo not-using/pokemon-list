@@ -9,6 +9,7 @@ import DetailPage from 'pages/DetailPage'
 import NotFoundPage from 'pages/NotFoundPage'
 import ErrorPage from 'pages/ErrorPage'
 import './global.css'
+import { getPokemonById } from 'api/getPokemons'
 
 function App() {
   const routes = createRoutesFromElements(
@@ -16,6 +17,7 @@ function App() {
       <Route path="/" element={<ListPage />} />
       <Route
         path="/:id"
+        loader={async ({ params }) => getPokemonById(Number(params.id))}
         element={<DetailPage />}
         errorElement={<NotFoundPage />}
       />
