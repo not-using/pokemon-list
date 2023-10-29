@@ -22,6 +22,6 @@ const ListWrapper = styled.ol`
   flex-wrap: wrap;
   width: 90%;
   justify-content: center;
-  margin: 4rem auto;
+  margin: 4rem auto 0;
   gap: 1rem;
 `
