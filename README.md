@@ -1,46 +1,94 @@
-# Getting Started with Create React App
+# 포켓몬 도감
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+[poke API](https://pokeapi.co/)를 이용한 포켓몬 도감 페이지입니다
 
-## Available Scripts
+- [배포링크](https://pokemon-list-alpha.vercel.app/)
+- 개발 기간: 약 4일 (2023.10.27 ~ 2023.10.30)
+- 개발 인원 : [@notusing11](https://github.com/notusing11) 1인
 
-In the project directory, you can run:
+## 실행 방법
 
-### `npm start`
+- 실행하기 위해서는 git과 Node.js가 설치된 환경이 필요합니다. (Node.js LTS, 18.17.0 버전 기준)
+- 해당 레포지토리를 클론 후 디렉토리로 이동합니다.
+- `npm install & npm start` 명령어로 실행하실 수 있습니다.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+```
+  git clone https://github.com/notusing11/pokemon-list.git && cd pokemon-list;
+  npm install & npm start;
+```
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## 주요 기능
 
-### `npm test`
+### 리스트 페이지
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- 포켓몬 순서에 맞는 리스트
+- 포켓몬 번호 검색 기능
+- 무한 스크롤 페이지네이션
+- 포켓몬 클릭시 상세페이지로 이동
 
-### `npm run build`
+### 상세 페이지
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- 포켓몬 정보 표시
+- 모든 진화 단계 및 현재 포켓몬 표시
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## 기능 구현시 신경 쓴 부분
 
-### `npm run eject`
+### 브라우저 캐싱
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- api 호출을 최소화하기 위해 브라우저 로컬 캐싱을 적용했습니다. 
+- 변동이 적은 데이터기 때문에 따로 유효기간을 설정하지 않고 첫 호출외에는 모두 재사용하도록 설정했습니다.
+- 네트워크 요청하기 전 캐싱여부를 확인하는 fetcher를 도입했습니다. 모든 네트워크 요청시에 활용하는 함수로 수평적으로 관심사를 분리하고자 했습니다. [/src/utils/fetcher.ts](/src/utils/fetcher.ts)
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### 기술스택 결정 및 SEO 최적화
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- 프레임워크(Next.js) 도입 대신 기초적인 Create-React-App 방식으로 결정했습니다. SPA 특성상 CSR은 SEO 관점에서 SSG, SSR 방식보다 불리한 점이 있지만 서버인스턴스의 유지비용와 코드 복잡도 등을 고려했을 때 SEO의 이점이 더 크지는 않다고 판단했기 때문입니다. 특히 전역상태 라이브러리를 반드시 사용해야 하는 상황이기 때문에 서버사이드 랜더링은 적절하지 않았습니다.
+- CSR 방식임에도 SEO 최적화 방식을 고민하고 최대한 적용했습니다. 시멘틱한 HTML 태그를 사용하고 링크 및 이미지 태그의 설명속성을 적절히 활용하였습니다. 그 결과 대표적인 성능검사 툴인 Lighthouse의 검색결과 검색엔진 최적화 부분의 모든 항목을 통과할 수 있었습니다. (크롬 시크릿모드, 2023.10.30 배포링크 기준)
+![/docs/lighthouse-SEO.png](/docs/lighthouse-SEO.png)
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### 전역상태 결정
 
-## Learn More
+- 포켓몬 리스트 페이지의 데이터를 전역상태로 저장했습니다. 뒤로가기 등 히스토리 이동시에도 무한 스크롤로 가져온 정보가 유지되어 사용자의 편의에 도움이 될 것으로 예상합니다.
+- 구현 기능 목표 중 수정, 삭제 등 상태변화와 관련된 기능이 없어 전역으로 관리해야 하는 필요성이 크지 않았다는 아쉬움이 있습니다. 추후 로그인 및 내 관심 포켓몬 추가 기능, 포켓몬 비교 기능 등 다양한 기능을 추가할 때 전역상태 설정이 도움이 될 것입니다.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### 포켓몬 한글 이름 표시
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- poke API의 구조상 기본 영문 이름 대신 한글 이름으로 변환하는게 꽤 까다로웠습니다. 한글이름은 포켓몬이 아니라 포켓몬 종에 대한 정보에 포함되어 있기 때문입니다. 당연히 이름은 기본정보라고 예상했던 처음 구상과 달라 데이터 타입부터 새롭게 정의하는 작업부터 여러번 다시 시작했습니다. API의 타입 구조를 파악하고 엔드포인트별 응답값을 분석하여 효율적인 방식으로 적용하고자 노력했습니다.
+
+- 도메인의 핵심인 Pokemon 타입을 PokemonBasicInfo와 PokemonSpeciesInfo 두 타입이 결합된 형태로 결정했습니다. 엔드포인트 별 응답값을 각각 가공하고 합쳐서 활용하기 좋은 구조라 생각합니다. [/src/types/Pokemon.ts](/src/types/Pokemon.ts)
+
+### 진화 단계 표시
+
+- 진화 단계 또한 API 타입 구조가 독특해서 고민을 많이 했던 부분이었습니다. 포켓몬 종에서 확인한 진화단계 고유번호로 진화단계의 상세정보를 가져오고 단계별 포켓몬 종 번호로 다시 한글 이름을 추출하는 작업이 필요했습니다. 이 과정에서 포켓몬 종 정보의 네트워크 호출 및 가공 로직을 재사용하도록 처리했습니다.
+
+- 또한 진화단계 데이터 타입이 일반적인 배열구조가 아니라 재귀적인 연결 리스트 형태인 점도 신선했습니다. 별도의 추출작업을 진행하는 코드를 구상하면서 React의 핵심 컨셉인 선언적으로 표현하는 코드로 만들고자 신경썼습니다. [/src/api/getEvolutionChain.ts](/src/api/getEvolutionChain.ts)
+
+- 현재 포켓몬이 진화 단계에서 어디에 위치하는지 강조하는 기능을 추가했습니다. 사용자의 관점에서 진화단계를 나열하는 정보만으로는 부족하다고 생각했기 때문입니다. 현재 확인하고 있는 포켓몬이 어느 정도 진화된 상태고 앞으로 어떤 단계로 나아갈 수 있는지 좀 더 직관적으로 보여줄 수 있을 것으로 기대합니다.
+  [/src/components/pokemon/Evolution.tsx](/src/components/pokemon/Evolution.tsx)
+
+## 기술 스택 및 사용한 라이브러리
+
+- Create React App (+ typescript)
+- styled-components : 컴포넌트 기반 css 처리
+- recoil : 전역 상태관리
+
+## 폴더 구조
+
+```
+src/
+├── api         # 네트워크 api 호출 및 데이터 가공 관련 로직
+├── atoms       # 전역 상태의 기본 값, (recoil의 Atom)
+├── components  # 페이지 외 컴포넌트, 도메인별로 분리
+├── constants   # 변경 가능성이 높거나 재사용되는 상수
+├── hooks       # api 호출과 상관없는 커스텀 훅
+├── pages       # 페이지 구성 및 레이아웃 컴포넌트
+├── types       # DTO 제외 데이터 타입
+└── utils       # 커스텀훅이 아닌 함수들
+
+```
+
+# 추가 정보
+
+## 배포
+
+- 해당 프로젝트는 Vercel를 통해 배포되었습니다. [배포링크](https://pokemon-list-alpha.vercel.app/)
