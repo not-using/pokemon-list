@@ -19,14 +19,16 @@ const PokemonEvolution = ({ evolutionChainId, currentPokemonId }: Props) => {
   return (
     <div>
       <Text type="subtitle">진화단계</Text>
-      {chain.map((species) => {
-        const isCurrentSpecies = currentPokemonId === species.speciesId
-        return (
-          <Species key={species.name} isCurrentSpecies={isCurrentSpecies}>
-            {`${species.name} ${isCurrentSpecies ? '(현재)' : ''}`}
-          </Species>
-        )
-      })}
+      <div>
+        {chain.map((species) => {
+          const isCurrentSpecies = currentPokemonId === species.speciesId
+          return (
+            <Species key={species.name} isCurrentSpecies={isCurrentSpecies}>
+              {`${species.name} ${isCurrentSpecies ? '(현재)' : ''}`}
+            </Species>
+          )
+        })}
+      </div>
     </div>
   )
 }

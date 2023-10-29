@@ -7,7 +7,7 @@ type Props = {
 
 const PokemonDetail = ({ pokemon }: Props) => {
   return (
-    <div>
+    <>
       <div>
         {pokemon.images.map((image) => (
           <img
@@ -20,16 +20,27 @@ const PokemonDetail = ({ pokemon }: Props) => {
           />
         ))}
       </div>
-      <Text>{pokemon.genus}</Text>
-      <Text type="subtitle">타입</Text>
-      {pokemon.types.map((type) => (
-        <Text key={type}>{type}</Text>
-      ))}
-      <Text type="subtitle">키</Text>
-      <Text>{`${pokemon.height}`}</Text>
-      <Text type="subtitle">몸무게</Text>
-      <Text>{`${pokemon.weight}`}</Text>
-    </div>
+      <div>
+        <Text type="subtitle">종류</Text>
+        <Text>{pokemon.genus}</Text>
+      </div>
+      <div>
+        <Text type="subtitle">타입</Text>
+        <div>
+          {pokemon.types.map((type) => (
+            <Text key={type}>{type}</Text>
+          ))}
+        </div>
+      </div>
+      <div>
+        <Text type="subtitle">키</Text>
+        <Text>{`${pokemon.height}`}</Text>
+      </div>
+      <div>
+        <Text type="subtitle">몸무게</Text>
+        <Text>{`${pokemon.weight}`}</Text>
+      </div>
+    </>
   )
 }
 
