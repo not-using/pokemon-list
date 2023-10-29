@@ -1,6 +1,5 @@
-import Text from 'components/Text'
-import styled from 'styled-components'
 import { Pokemon } from 'types/Pokemon'
+import Text from 'components/Text'
 
 type Props = {
   pokemon: Pokemon
@@ -11,7 +10,14 @@ const PokemonDetail = ({ pokemon }: Props) => {
     <div>
       <div>
         {pokemon.images.map((image) => (
-          <Image key={image} src={image} alt={pokemon.name} loading="lazy" />
+          <img
+            key={image}
+            src={image}
+            alt={pokemon.name}
+            width={100}
+            height={100}
+            loading="lazy"
+          />
         ))}
       </div>
       <Text>{pokemon.genus}</Text>
@@ -28,8 +34,3 @@ const PokemonDetail = ({ pokemon }: Props) => {
 }
 
 export default PokemonDetail
-
-const Image = styled.img`
-  width: 8rem;
-  height: auto;
-`
