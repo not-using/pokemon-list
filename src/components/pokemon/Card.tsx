@@ -9,7 +9,7 @@ type Props = {
 const Card = ({ pokemon }: Props) => {
   return (
     <CardWrapper>
-      <CardLink to={`/detail/${pokemon.id}`}>
+      <CardLink to={`/${pokemon.id}`}>
         <Text type="subtitle">{`#${pokemon.id}`}</Text>
         <Text>{pokemon.name}</Text>
       </CardLink>
