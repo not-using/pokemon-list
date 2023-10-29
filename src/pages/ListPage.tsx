@@ -10,12 +10,10 @@ import PokemonList from 'components/pokemon/List'
 const ListPage = () => {
   const [pokemons, setPokemons] = useRecoilState(PokemonsAtom)
   const infiniteScrollTrigger = useRef<HTMLDivElement>(null)
-  const offset = useRef(0)
 
   useObserver(infiniteScrollTrigger, () => {
-    getPokemons(offset.current).then((pokemons) => {
+    getPokemons(pokemons.length).then((pokemons) => {
       setPokemons((prev) => [...prev, ...pokemons])
-      offset.current += pokemons.length
     })
   })
 
