@@ -1,4 +1,3 @@
-import { Suspense } from 'react'
 import { Outlet } from 'react-router'
 import styled from 'styled-components'
 import Header from 'components/Header'
@@ -8,9 +7,7 @@ const Layout = () => {
     <>
       <Header />
       <Main>
-        <Suspense>
-          <Outlet />
-        </Suspense>
+        <Outlet />
       </Main>
     </>
   )
