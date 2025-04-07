@@ -1,7 +1,4 @@
-import { atom } from 'recoil'
+import { atom } from 'jotai'
 import { Pokemon } from 'types/Pokemon'
 
-export const PokemonsAtom = atom<Pokemon[]>({
-  key: 'pokemons',
-  default: [],
-})
+export const PokemonsAtom = atom<Pokemon[]>([])

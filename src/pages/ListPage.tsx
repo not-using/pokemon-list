@@ -1,5 +1,5 @@
 import { useRef } from 'react'
-import { useRecoilState } from 'recoil'
+import { useAtom } from 'jotai'
 import { useObserver } from 'hooks/useObserver'
 import { getPokemons } from 'api/getPokemons'
 import { PokemonsAtom } from 'atoms/pokemons'
@@ -8,7 +8,7 @@ import PokemonList from 'components/pokemon/List'
 import Loader from 'components/Loader'
 
 const ListPage = () => {
-  const [pokemons, setPokemons] = useRecoilState(PokemonsAtom)
+  const [pokemons, setPokemons] = useAtom(PokemonsAtom)
   const infiniteScrollTrigger = useRef<HTMLDivElement>(null)
 
   useObserver(infiniteScrollTrigger, () => {
@@ -21,7 +21,7 @@ const ListPage = () => {
     <>
       <Text type="title">포켓몬 도감</Text>
       <PokemonList pokemons={pokemons} />
-      <Loader ref={infiniteScrollTrigger}/>
+      <Loader ref={infiniteScrollTrigger} />
     </>
   )
 }
