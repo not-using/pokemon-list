@@ -1,4 +1,4 @@
-import { Pokemon } from 'types/Pokemon'
+import { type Pokemon } from 'types/Pokemon'
 import Text from 'components/Text'
 
 type Props = {

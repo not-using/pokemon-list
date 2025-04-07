@@ -1,5 +1,5 @@
 import { LIMIT } from 'constants/pokeApi'
-import { Pokemon } from 'types/Pokemon'
+import { type Pokemon } from 'types/Pokemon'
 import { getPokemonById } from './getPokemonById'
 
 export const getPokemons = async (offset: number = 0): Promise<Pokemon[]> => {

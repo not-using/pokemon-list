@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { getEvolutioChain } from 'api/getEvolutionChain'
-import { PokemonSpeciesInfo } from 'types/Pokemon'
+import { type PokemonSpeciesInfo } from 'types/Pokemon'
 import Text from 'components/Text'
 
 type Props = {

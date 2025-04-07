@@ -1,4 +1,4 @@
-import { Pokemon } from 'types/Pokemon'
+import { type Pokemon } from 'types/Pokemon'
 import Card from './Card'
 import styled from 'styled-components'
 

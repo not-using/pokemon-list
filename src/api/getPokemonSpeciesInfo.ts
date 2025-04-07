@@ -1,5 +1,5 @@
 import { pokeBaseURL } from 'constants/pokeApi'
-import { PokemonSpeciesInfo } from 'types/Pokemon'
+import { type PokemonSpeciesInfo } from 'types/Pokemon'
 import { fetcher } from 'utils/fetcher'
 import { parseIdFromUrl } from 'utils/parseIdFromUrl'
 

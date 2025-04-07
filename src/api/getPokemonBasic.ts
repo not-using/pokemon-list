@@ -1,5 +1,5 @@
 import { pokeBaseURL } from 'constants/pokeApi'
-import { PokemonBasicInfo } from 'types/Pokemon'
+import { type PokemonBasicInfo } from 'types/Pokemon'
 import { fetcher } from 'utils/fetcher'
 
 export const getPokemonBasic = async (

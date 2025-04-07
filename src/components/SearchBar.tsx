@@ -1,4 +1,4 @@
-import { FormEventHandler, useState } from 'react'
+import { useState, type FormEventHandler } from 'react'
 import { useNavigate } from 'react-router'
 import styled from 'styled-components'
 

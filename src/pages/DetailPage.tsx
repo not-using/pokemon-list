@@ -1,5 +1,5 @@
 import { useLoaderData } from 'react-router'
-import { Pokemon } from 'types/Pokemon'
+import { type Pokemon } from 'types/Pokemon'
 import Text from 'components/Text'
 import PokemonDetail from 'components/pokemon/Detail'
 import PokemonEvolution from 'components/pokemon/Evolution'
