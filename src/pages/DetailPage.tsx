@@ -1,4 +1,4 @@
-import { useLoaderData } from 'react-router-dom'
+import { useLoaderData } from 'react-router'
 import { Pokemon } from 'types/Pokemon'
 import Text from 'components/Text'
 import PokemonDetail from 'components/pokemon/Detail'

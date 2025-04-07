@@ -4,7 +4,7 @@ import {
   RouterProvider,
   createRoutesFromElements,
   Route,
-} from 'react-router-dom'
+} from 'react-router'
 import { getPokemonById } from 'api/getPokemonById'
 import './global.css'
 const Layout = lazy(() => import('pages/PageLayout'))

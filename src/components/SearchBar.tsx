@@ -1,5 +1,5 @@
 import { FormEventHandler, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router'
 import styled from 'styled-components'
 
 const SearchBar = () => {

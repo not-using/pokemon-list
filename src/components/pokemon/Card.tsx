@@ -1,5 +1,5 @@
 import Text from 'components/Text'
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router'
 import styled from 'styled-components'
 import { Pokemon } from 'types/Pokemon'
 
