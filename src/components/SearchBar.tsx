@@ -1,6 +1,5 @@
 import { useState, type FormEventHandler } from 'react'
 import { useNavigate } from 'react-router'
-import styled from 'styled-components'
 
 const SearchBar = () => {
   const [searchedValue, setSearchedValue] = useState('')
@@ -12,30 +11,21 @@ const SearchBar = () => {
   }
 
   return (
-    <SearchBarWrapper onSubmit={goToPokemonDetail}>
-      <Input
+    <form
+      onSubmit={goToPokemonDetail}
+      className="flex w-3xs items-center justify-center"
+    >
+      <input
+        className="flex-grow px-1.5 py-0.5"
         type="number"
         onChange={(e) => setSearchedValue(e.currentTarget.value)}
         placeholder="포켓몬 번호를 입력해주세요"
       />
-      <Button type="submit">검색</Button>
-    </SearchBarWrapper>
+      <button className="px-1.5 py-0.5" type="submit">
+        검색
+      </button>
+    </form>
   )
 }
 
 export default SearchBar
-
-const SearchBarWrapper = styled.form`
-  width: 16rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`
-const Input = styled.input`
-  flex-grow: 1;
-  padding: 0.1rem 0.4rem;
-`
-const Button = styled.button`
-  padding: 0.1rem 0.4rem;
-  margin-left: 0.5rem;
-`
