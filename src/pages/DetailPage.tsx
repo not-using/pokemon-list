@@ -1,12 +1,27 @@
-import { useLoaderData } from 'react-router'
+import {
+  data,
+  isRouteErrorResponse,
+  Link,
+  type ClientLoaderFunctionArgs,
+} from 'react-router'
 import { type Pokemon } from 'types/Pokemon'
 import Text from 'components/Text'
 import PokemonDetail from 'components/pokemon/Detail'
 import PokemonEvolution from 'components/pokemon/Evolution'
 import styled from 'styled-components'
+import { getPokemonById } from 'api/getPokemonById'
+import type { Route } from './+types/DetailPage'
 
-const DetailPage = () => {
-  const pokemon = useLoaderData() as Pokemon
+export async function clientLoader({ params }: ClientLoaderFunctionArgs) {
+  const id = Number(params.id)
+  if (isNaN(id)) {
+    throw data('포켓몬 정보를 찾을 수 없습니다', { status: 400 })
+  }
+  return getPokemonById(id)
+}
+
+const DetailPage = ({ loaderData }: Route.ComponentProps) => {
+  const pokemon = loaderData as Pokemon
 
   return (
     <DetailWrapper>
@@ -21,6 +36,34 @@ const DetailPage = () => {
 }
 
 export default DetailPage
+
+export const ErrorBoundary = ({ error }: Route.ErrorBoundaryProps) => {
+  if (isRouteErrorResponse(error))
+    return (
+      <div>
+        <h2>
+          {error.status} {error.statusText}
+        </h2>
+        <p>{error.data}</p>
+        <Link to="/">처음으로</Link>
+      </div>
+    )
+  if (error instanceof Error) {
+    return (
+      <div>
+        <h2>{error.name}</h2>
+        <p>{error.message}</p>
+        <Link to="/">처음으로</Link>
+      </div>
+    )
+  }
+  return (
+    <div>
+      <p>Unknown Error</p>
+      <Link to="/">처음으로</Link>
+    </div>
+  )
+}
 
 const DetailWrapper = styled.article`
   width: 70%;
