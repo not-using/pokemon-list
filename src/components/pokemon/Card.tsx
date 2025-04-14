@@ -1,4 +1,5 @@
 import Text from 'components/Text'
+import { memo } from 'react'
 import { Link } from 'react-router'
 import styled from 'styled-components'
 import { type Pokemon } from 'types/Pokemon'
@@ -24,7 +25,7 @@ const Card = ({ pokemon }: Props) => {
   )
 }
 
-export default Card
+export default memo(Card)
 
 const CardWrapper = styled.li`
   list-style: none;
