@@ -1,27 +1,17 @@
 import { type Pokemon } from 'types/Pokemon'
 import Card from './Card'
-import styled from 'styled-components'
 
 type Props = {
   pokemons: Pokemon[]
 }
 const PokemonList = ({ pokemons }: Props) => {
   return (
-    <ListWrapper>
+    <ol className="mx-auto mt-16 flex w-11/12 flex-wrap justify-center gap-4">
       {pokemons.map((pokemon) => (
         <Card pokemon={pokemon} key={pokemon.id} />
       ))}
-    </ListWrapper>
+    </ol>
   )
 }
 
 export default PokemonList
-
-const ListWrapper = styled.ol`
-  display: flex;
-  flex-wrap: wrap;
-  width: 90%;
-  justify-content: center;
-  margin: 4rem auto 0;
-  gap: 1rem;
-`

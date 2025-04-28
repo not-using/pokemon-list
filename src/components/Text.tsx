@@ -1,5 +1,3 @@
-import styled from 'styled-components'
-
 type Props = {
   type?: 'title' | 'subtitle' | 'normal'
   children: string
@@ -9,27 +7,14 @@ type Props = {
 const Text = ({ type = 'normal', children, className }: Props) => {
   switch (type) {
     case 'title':
-      return <Title className={className}>{children}</Title>
+      return <h1 className={`${className} text-4xl font-bold`}>{children}</h1>
     case 'subtitle':
-      return <SubTitle className={className}>{children}</SubTitle>
+      return (
+        <h3 className={`${className} text-2xl font-semibold`}>{children}</h3>
+      )
     case 'normal':
-      return <NormalText className={className}>{children}</NormalText>
+      return <p className={`${className} text-base font-normal`}>{children}</p>
   }
 }
 
 export default Text
-
-const Title = styled.h1`
-  font-size: 2rem;
-  font-weight: 700;
-`
-
-const SubTitle = styled.h3`
-  font-size: 1.5rem;
-  font-weight: 600;
-`
-
-const NormalText = styled.p`
-  font-size: 1rem;
-  font-weight: 400;
-`

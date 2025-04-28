@@ -1,7 +1,6 @@
 import Text from 'components/Text'
 import { memo } from 'react'
 import { Link } from 'react-router'
-import styled from 'styled-components'
 import { type Pokemon } from 'types/Pokemon'
 
 type Props = {
@@ -9,9 +8,15 @@ type Props = {
 }
 const Card = ({ pokemon }: Props) => {
   return (
-    <CardWrapper>
-      <CardLink to={`/${pokemon.id}`}>
-        <Id type="subtitle">{`${pokemon.id}`}</Id>
+    <li className="w-80 rounded-lg border-2 border-black">
+      <Link
+        to={`/${pokemon.id}`}
+        className="flex h-40 cursor-pointer flex-col items-center justify-center"
+      >
+        <Text
+          type="subtitle"
+          className="before:content-['#']"
+        >{`${pokemon.id}`}</Text>
         <Text>{pokemon.name}</Text>
         <img
           src={pokemon.images[pokemon.images.length - 1]} // 정면 이미지
@@ -20,32 +25,9 @@ const Card = ({ pokemon }: Props) => {
           height={100}
           loading="lazy"
         />
-      </CardLink>
-    </CardWrapper>
+      </Link>
+    </li>
   )
 }
 
 export default memo(Card)
-
-const CardWrapper = styled.li`
-  list-style: none;
-  width: 20rem;
-  border: 1px solid black;
-  border-radius: 0.5rem;
-`
-const CardLink = styled(Link)`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 10rem;
-  cursor: pointer;
-  text-decoration: none;
-  color: inherit;
-`
-
-const Id = styled(Text)`
-  &:before {
-    content: '#';
-  }
-`

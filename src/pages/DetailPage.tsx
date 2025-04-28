@@ -8,7 +8,6 @@ import { type Pokemon } from 'types/Pokemon'
 import Text from 'components/Text'
 import PokemonDetail from 'components/pokemon/Detail'
 import PokemonEvolution from 'components/pokemon/Evolution'
-import styled from 'styled-components'
 import { getPokemonById } from 'api/getPokemonById'
 import type { Route } from './+types/DetailPage'
 
@@ -24,14 +23,14 @@ const DetailPage = ({ loaderData }: Route.ComponentProps) => {
   const pokemon = loaderData as Pokemon
 
   return (
-    <DetailWrapper>
+    <article className="mx-auto my-0 w-8/12">
       <Text type="title">{`#${pokemon.id} ${pokemon.name}`}</Text>
       <PokemonDetail pokemon={pokemon} />
       <PokemonEvolution
         evolutionChainId={pokemon.evolutionChainId}
         currentPokemonId={pokemon.speciesId}
       />
-    </DetailWrapper>
+    </article>
   )
 }
 
@@ -64,22 +63,3 @@ export const ErrorBoundary = ({ error }: Route.ErrorBoundaryProps) => {
     </div>
   )
 }
-
-const DetailWrapper = styled.article`
-  width: 70%;
-  margin: 0 auto;
-  & > div {
-    width: 30rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 2rem auto;
-  }
-  & > div > * {
-    flex-basis: 10rem;
-  }
-  & h3 {
-    flex-basis: 5rem;
-    font-size: 1.2rem;
-  }
-`

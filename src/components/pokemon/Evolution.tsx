@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import styled from 'styled-components'
 import { getEvolutioChain } from 'api/getEvolutionChain'
 import { type PokemonSpeciesInfo } from 'types/Pokemon'
 import Text from 'components/Text'
@@ -23,9 +22,12 @@ const PokemonEvolution = ({ evolutionChainId, currentPokemonId }: Props) => {
         {chain.map((species) => {
           const isCurrentSpecies = currentPokemonId === species.speciesId
           return (
-            <Species key={species.name} isCurrentSpecies={isCurrentSpecies}>
+            <Text
+              key={species.name}
+              className={`${isCurrentSpecies ? 'text-red-500' : ''}`}
+            >
               {`${species.name} ${isCurrentSpecies ? '(현재)' : ''}`}
-            </Species>
+            </Text>
           )
         })}
       </div>
@@ -34,7 +36,3 @@ const PokemonEvolution = ({ evolutionChainId, currentPokemonId }: Props) => {
 }
 
 export default PokemonEvolution
-
-const Species = styled(Text)<{ isCurrentSpecies: boolean }>`
-  color: ${(props) => (props.isCurrentSpecies ? 'red' : 'inherit')};
-`

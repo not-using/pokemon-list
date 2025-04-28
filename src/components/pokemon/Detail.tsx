@@ -8,7 +8,7 @@ type Props = {
 const PokemonDetail = ({ pokemon }: Props) => {
   return (
     <>
-      <div>
+      <div className="flex items-center justify-center">
         {pokemon.images.map((image) => (
           <img
             key={image}
