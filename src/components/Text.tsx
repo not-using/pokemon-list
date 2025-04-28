@@ -13,6 +13,7 @@ const Text = ({ type = 'normal', children, className }: Props) => {
         <h3 className={`${className} text-2xl font-semibold`}>{children}</h3>
       )
     case 'normal':
+    default:
       return <p className={`${className} text-base font-normal`}>{children}</p>
   }
 }
